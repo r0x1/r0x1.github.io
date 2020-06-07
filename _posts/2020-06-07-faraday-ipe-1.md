@@ -38,7 +38,7 @@ faraday的上一个稳定版本是3.10.2，包含服务器端和客户端，所�
 $ cd faraday-3.10.2
 ```
 
-- 更新apt  
+- 更新apt
 
 ```
 $ sudo apt-get update
@@ -74,9 +74,11 @@ $ python setup.py develop
 
 - 安装依赖项
 ```
+
 $ pip install -r requirements.txt
 $ pip install -r requirements_server.txt
 $ pip install -r requirements_dev.txt
+
 ```
 
 - 这期间会遇到一些错误提示：
@@ -360,6 +362,7 @@ echo ""
 echo "done!"
 echo ""
 ```
+
 
 
 
