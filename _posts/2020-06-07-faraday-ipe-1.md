@@ -77,7 +77,6 @@ $ python setup.py develop
 $ pip install -r requirements.txt
 $ pip install -r requirements_server.txt
 $ pip install -r requirements_dev.txt
-
 ```
 
 - 这期间会遇到一些错误提示：
@@ -362,6 +361,7 @@ echo ""
 echo "done!"
 echo ""
 ```
+
 
 
 
