@@ -97,7 +97,7 @@ $ sudo apt-get install libpq-dev python-dev
 
 
 - 需要根据你的python版本，安装对应的包，例如我的是3.7，则要安装python3.7-dev
-```  
+```
 $ sudo apt-get install python3.7-dev  
 $ pip install psycopg2  
 ```  
@@ -360,6 +360,7 @@ echo ""
 echo "done!"
 echo ""
 ```
+
 
 
 
