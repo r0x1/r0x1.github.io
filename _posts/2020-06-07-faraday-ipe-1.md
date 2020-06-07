@@ -1,365 +1,791 @@
 ---
 layout: post
-title: Faraday IPE 二次开发 (1) 安装
+title: Faraday IPE 二次开发 (1) 功能与目录
 date: 2020-06-07T00:00:00+00:00
 tags:
   - faraday
 image: null
 ---
-> 
-2020-06-07，faraday最新版是3.11.1。  
-但是，只有服务器端，没有客户端。
-因为faraday正在将client分离到一个单独的项目中：faraday-client，但是目前没有release版本。
-faraday的上一个稳定版本是3.10.2，包含服务器端和客户端，所以这里采用3.10.2进行二次开发的探(踩)索(坑)。
+> 基于 faraday 3.10.2，因为3.11的faraday_client分到了单独的项目，而且暂时没有release。
 
-
-***友情提示：***
-
-*faraday安装成功之后，会创建一个 /home/zhangsan/.faraday 目录，
-如果你发现你的系统中多出了一个 faraday 用户和组，或者多出了一个 /home/faraday/ 目录，
-或者你在控制台可以自动完成命令 $ faraday-server 等 带有 faraday 的任何东西，
-那么恭喜你，你的二次开发环境就算安装失败了，因为这个是通过deb安装才会出现的，不是源码安装的。
-用我下面提供的完全删除faraday的sh来删除faraday，重新安装吧。*
-
-
-*我的操作系统：ParrotOS 4.9.1  
-一定部署在虚拟机上，快照是个好东西，我拍了20个快照，才把faraday装好。  
-建议先仔细看一遍官方 Development setup 的 wiki：https://github.com/infobyte/faraday/wiki/Development-setup  *
+faraday-3.10.2
 
 
 
-## 服务器端安装和运行
-
-- 下载代码
-```
-https://github.com/infobyte/faraday/releases
-我下载的是 https://github.com/infobyte/faraday/archive/v3.10.2.zip
-下载 faraday-3.10.2.zip，解压得到 /home/zhangsan/Workspace/faraday-3.10.2 目录。
 ```
 
-- 进入目录
-```
-$ cd faraday-3.10.2
+.
+├── absolutize
+│   ├── fix_files_structure.sh
+│   ├── fix_nontrivial_imports.sh
+│   └── fix_trivial_imports.sh
+├── AUTHORS
+├── buildpth.nix
+├── buildpth.sh
+├── CHANGELOG
+├── credentials.json
+├── data
+│   ├── cwe.csv
+│   ├── cwe_en.csv
+│   ├── cwe_es.csv
+│   └── fix_severities.py
+├── debian
+│   ├── changelog
+│   ├── compat
+│   ├── control
+│   ├── copyright
+│   ├── docs
+│   ├── faraday-client.install
+│   ├── faraday.desktop
+│   ├── faraday-server.install
+│   ├── faraday-server.postinst
+│   ├── faraday-server.service
+│   ├── helper-script
+│   │   ├── faraday
+│   │   └── faraday-server
+│   ├── rules
+│   ├── source
+│   │   ├── format
+│   │   └── options
+│   └── watch
+├── doc
+│   ├── conf.py
+│   ├── creating_views.rst
+│   ├── index.rst
+│   ├── LIBRARY_LICENSE
+│   ├── LICENSE
+│   ├── LICENSE_FILE
+│   ├── Makefile
+│   ├── overview.rst
+│   ├── recipes.rst
+│   └── reference.rst
+├── faraday
+│   ├── alembic.ini
+│   ├── client
+│   │   ├── apis
+│   │   │   ├── __init__.py
+│   │   │   ├── __pycache__
+│   │   │   │   └── __init__.cpython-37.pyc
+│   │   │   └── rest
+│   │   │       ├── api.py
+│   │   │       ├── client.py
+│   │   │       ├── __init__.py
+│   │   │       └── __pycache__
+│   │   │           ├── api.cpython-37.pyc
+│   │   │           └── __init__.cpython-37.pyc
+│   │   ├── bin
+│   │   │   ├── autoclose_vulns.py
+│   │   │   ├── change_vuln_status.py
+│   │   │   ├── create_cred.py
+│   │   │   ├── create_host.py
+│   │   │   ├── create_service.py
+│   │   │   ├── create_vuln.py
+│   │   │   ├── create_vulnweb.py
+│   │   │   ├── del_all_hosts.py
+│   │   │   ├── del_all_services_closed.py
+│   │   │   ├── del_all_vulns_with.py
+│   │   │   ├── fbruteforce_services.py
+│   │   │   ├── filter_services.py
+│   │   │   ├── fplugin.py
+│   │   │   ├── get_all_ips.py
+│   │   │   ├── get_severitiy_by_cwe.py
+│   │   │   ├── import_csv.py
+│   │   │   ├── import_pcap.py
+│   │   │   ├── __init__.py
+│   │   │   ├── list_creds.py
+│   │   │   ├── list_hosts.py
+│   │   │   ├── list_ips.py
+│   │   │   ├── list_os.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── autoclose_vulns.cpython-37.pyc
+│   │   │   │   ├── change_vuln_status.cpython-37.pyc
+│   │   │   │   ├── create_cred.cpython-37.pyc
+│   │   │   │   ├── create_host.cpython-37.pyc
+│   │   │   │   ├── create_service.cpython-37.pyc
+│   │   │   │   ├── create_vuln.cpython-37.pyc
+│   │   │   │   ├── create_vulnweb.cpython-37.pyc
+│   │   │   │   ├── del_all_hosts.cpython-37.pyc
+│   │   │   │   ├── del_all_services_closed.cpython-37.pyc
+│   │   │   │   ├── del_all_vulns_with.cpython-37.pyc
+│   │   │   │   ├── fbruteforce_services.cpython-37.pyc
+│   │   │   │   ├── filter_services.cpython-37.pyc
+│   │   │   │   ├── get_all_ips.cpython-37.pyc
+│   │   │   │   ├── get_severitiy_by_cwe.cpython-37.pyc
+│   │   │   │   ├── import_csv.cpython-37.pyc
+│   │   │   │   ├── import_pcap.cpython-37.pyc
+│   │   │   │   ├── list_creds.cpython-37.pyc
+│   │   │   │   ├── list_hosts.cpython-37.pyc
+│   │   │   │   ├── list_ips.cpython-37.pyc
+│   │   │   │   ├── list_os.cpython-37.pyc
+│   │   │   │   └── screenshot_server.cpython-37.pyc
+│   │   │   └── screenshot_server.py
+│   │   ├── data
+│   │   │   └── images
+│   │   ├── gui
+│   │   │   ├── customevents.py
+│   │   │   ├── gtk
+│   │   │   │   ├── application.py
+│   │   │   │   ├── appwindow.py
+│   │   │   │   ├── compatibility.py
+│   │   │   │   ├── decorators.py
+│   │   │   │   ├── dialogs.py
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── mainwidgets.py
+│   │   │   │   ├── menubar.xml
+│   │   │   │   ├── __pycache__
+│   │   │   │   │   ├── application.cpython-37.pyc
+│   │   │   │   │   ├── appwindow.cpython-37.pyc
+│   │   │   │   │   ├── compatibility.cpython-37.pyc
+│   │   │   │   │   ├── decorators.cpython-37.pyc
+│   │   │   │   │   ├── dialogs.cpython-37.pyc
+│   │   │   │   │   ├── __init__.cpython-37.pyc
+│   │   │   │   │   ├── mainwidgets.cpython-37.pyc
+│   │   │   │   │   └── server.cpython-37.pyc
+│   │   │   │   └── server.py
+│   │   │   ├── gui_app.py
+│   │   │   ├── __init__.py
+│   │   │   ├── loghandler.py
+│   │   │   ├── nogui
+│   │   │   │   ├── application.py
+│   │   │   │   ├── eventwatcher.py
+│   │   │   │   └── __init__.py
+│   │   │   ├── notifier.py
+│   │   │   └── __pycache__
+│   │   │       ├── customevents.cpython-37.pyc
+│   │   │       ├── gui_app.cpython-37.pyc
+│   │   │       ├── __init__.cpython-37.pyc
+│   │   │       ├── loghandler.cpython-37.pyc
+│   │   │       └── notifier.cpython-37.pyc
+│   │   ├── helpers
+│   │   │   ├── cfdbToCsv.py
+│   │   │   ├── cleanXML.py
+│   │   │   ├── plugins
+│   │   │   │   └── canvas
+│   │   │   │       └── faraday_report
+│   │   │   │           ├── dialog.glade2
+│   │   │   │           └── faraday_report.py
+│   │   │   └── vulndbToCsv.py
+│   │   ├── __init__.py
+│   │   ├── managers
+│   │   │   ├── all.py
+│   │   │   ├── __init__.py
+│   │   │   ├── mapper_manager.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── __init__.cpython-37.pyc
+│   │   │   │   ├── mapper_manager.cpython-37.pyc
+│   │   │   │   ├── reports_managers.cpython-37.pyc
+│   │   │   │   └── workspace_manager.cpython-37.pyc
+│   │   │   ├── reports_managers.py
+│   │   │   └── workspace_manager.py
+│   │   ├── model
+│   │   │   ├── api.py
+│   │   │   ├── application.py
+│   │   │   ├── cli_app.py
+│   │   │   ├── commands_history.py
+│   │   │   ├── common.py
+│   │   │   ├── conflict.py
+│   │   │   ├── container.py
+│   │   │   ├── controller.py
+│   │   │   ├── diff.py
+│   │   │   ├── guiapi.py
+│   │   │   ├── __init__.py
+│   │   │   ├── log.py
+│   │   │   ├── __pycache__
+│   │   │   ├── session.py
+│   │   │   ├── timeline.py
+│   │   │   ├── views.py
+│   │   │   ├── visitor.py
+│   │   │   └── workspace.py
+│   │   ├── persistence
+│   │   │   ├── __init__.py
+│   │   │   ├── __pycache__
+│   │   │   └── server
+│   │   │       ├── changes_stream.py
+│   │   │       ├── docs
+│   │   │       │   ├── _build
+│   │   │       │   │   ├── doctrees
+│   │   │       │   │   │   ├── environment.pickle
+│   │   │       │   │   │   ├── index.doctree
+│   │   │       │   │   │   ├── modules.doctree
+│   │   │       │   │   │   └── server.doctree
+│   │   │       │   │   └── html
+│   │   │       │   │       ├── genindex.html
+│   │   │       │   │       ├── index.html
+│   │   │       │   │       ├── _modules
+│   │   │       │   │       │   ├── index.html
+│   │   │       │   │       │   ├── persistence
+│   │   │       │   │       │   │   └── server
+│   │   │       │   │       │   │       └── server.html
+│   │   │       │   │       │   ├── server
+│   │   │       │   │       │   │   └── models.html
+│   │   │       │   │       │   ├── server.html
+│   │   │       │   │       │   └── sqlalchemy
+│   │   │       │   │       │       └── orm
+│   │   │       │   │       │           └── attributes.html
+│   │   │       │   │       ├── modules.html
+│   │   │       │   │       ├── objects.inv
+│   │   │       │   │       ├── py-modindex.html
+│   │   │       │   │       ├── search.html
+│   │   │       │   │       ├── searchindex.js
+│   │   │       │   │       ├── server.html
+│   │   │       │   │       ├── _sources
+│   │   │       │   │       │   ├── index.rst.txt
+│   │   │       │   │       │   ├── index.txt
+│   │   │       │   │       │   ├── modules.rst.txt
+│   │   │       │   │       │   ├── modules.txt
+│   │   │       │   │       │   ├── server.rst.txt
+│   │   │       │   │       │   └── server.txt
+│   │   │       │   │       └── _static
+│   │   │       │   │           ├── ajax-loader.gif
+│   │   │       │   │           ├── alabaster.css
+│   │   │       │   │           ├── basic.css
+│   │   │       │   │           ├── comment-bright.png
+│   │   │       │   │           ├── comment-close.png
+│   │   │       │   │           ├── comment.png
+│   │   │       │   │           ├── css
+│   │   │       │   │           │   ├── badge_only.css
+│   │   │       │   │           │   └── theme.css
+│   │   │       │   │           ├── custom.css
+│   │   │       │   │           ├── doctools.js
+│   │   │       │   │           ├── down.png
+│   │   │       │   │           ├── down-pressed.png
+│   │   │       │   │           ├── file.png
+│   │   │       │   │           ├── fonts
+│   │   │       │   │           │   ├── fontawesome-webfont.eot
+│   │   │       │   │           │   ├── fontawesome-webfont.svg
+│   │   │       │   │           │   ├── fontawesome-webfont.ttf
+│   │   │       │   │           │   ├── fontawesome-webfont.woff
+│   │   │       │   │           │   ├── Inconsolata-Bold.ttf
+│   │   │       │   │           │   ├── Inconsolata-Regular.ttf
+│   │   │       │   │           │   ├── Lato-Bold.ttf
+│   │   │       │   │           │   ├── Lato-Regular.ttf
+│   │   │       │   │           │   ├── RobotoSlab-Bold.ttf
+│   │   │       │   │           │   └── RobotoSlab-Regular.ttf
+│   │   │       │   │           ├── jquery-1.11.1.js
+│   │   │       │   │           ├── jquery-3.1.0.js
+│   │   │       │   │           ├── jquery.js
+│   │   │       │   │           ├── js
+│   │   │       │   │           │   ├── modernizr.min.js
+│   │   │       │   │           │   └── theme.js
+│   │   │       │   │           ├── minus.png
+│   │   │       │   │           ├── plus.png
+│   │   │       │   │           ├── pygments.css
+│   │   │       │   │           ├── searchtools.js
+│   │   │       │   │           ├── underscore-1.3.1.js
+│   │   │       │   │           ├── underscore.js
+│   │   │       │   │           ├── up.png
+│   │   │       │   │           ├── up-pressed.png
+│   │   │       │   │           └── websupport.js
+│   │   │       │   ├── conf.py
+│   │   │       │   ├── index.rst
+│   │   │       │   ├── make.bat
+│   │   │       │   ├── Makefile
+│   │   │       │   └── server.rst
+│   │   │       ├── __init__.py
+│   │   │       ├── models.py
+│   │   │       ├── __pycache__
+│   │   │       │   ├── changes_stream.cpython-37.pyc
+│   │   │       │   ├── __init__.cpython-37.pyc
+│   │   │       │   ├── models.cpython-37.pyc
+│   │   │       │   ├── server.cpython-37.pyc
+│   │   │       │   ├── server_io_exceptions.cpython-37.pyc
+│   │   │       │   └── utils.cpython-37.pyc
+│   │   │       ├── server_io_exceptions.py
+│   │   │       ├── server.py
+│   │   │       └── utils.py
+│   │   ├── plugins
+│   │   │   ├── controller.py
+│   │   │   ├── core.py
+│   │   │   ├── fplugin_utils.py
+│   │   │   ├── __init__.py
+│   │   │   ├── manager.py
+│   │   │   ├── plugin.py
+│   │   │   ├── plugins_utils.py
+│   │   │   ├── plugin_utils.py
+│   │   │   ├── port_mapper.txt
+│   │   │   ├── __pycache__
+│   │   │   │   ├── controller.cpython-37.pyc
+│   │   │   │   ├── core.cpython-37.pyc
+│   │   │   │   ├── fplugin_utils.cpython-37.pyc
+│   │   │   │   ├── __init__.cpython-37.pyc
+│   │   │   │   ├── manager.cpython-37.pyc
+│   │   │   │   ├── plugin.cpython-37.pyc
+│   │   │   │   ├── plugins_utils.cpython-37.pyc
+│   │   │   │   └── plugin_utils.cpython-37.pyc
+│   │   │   └── repo
+│   │   │       ├── acunetix
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── amap
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── appscan
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── arachni
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── arp-scan
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── beef
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── brutexss
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── burp
+│   │   │       │   ├── burp-2.0-SNAPSHOT.jar
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── dig
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── dirb
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── dirsearch
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── dnsenum
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── dnsmap
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── dnsrecon
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── dnswalk
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── fierce
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── fortify
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── fruitywifi
+│   │   │       │   ├── fruitywifi.py
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── ftp
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── goohost
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── hping3
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── hydra
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── impact
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── __init__.py
+│   │   │       ├── ip360
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── junit
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── listurl
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── lynis
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── maltego
+│   │   │       │   ├── Graph1.graphml
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── masscan
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── medusa
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── metagoofil
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── metasploit
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── metasploiton
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── ndiff
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── nessus
+│   │   │       │   ├── dotnessus_v2.py
+│   │   │       │   ├── __init__.py
+│   │   │       │   ├── plugin.py
+│   │   │       │   ├── __pycache__
+│   │   │       │   │   ├── dotnessus_v2.cpython-37.pyc
+│   │   │       │   │   └── __init__.cpython-37.pyc
+│   │   │       │   └── pynessus.py
+│   │   │       ├── netcat
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── netdiscover
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── netsparker
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── netsparkercloud
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── nexpose-full
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── nikto
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── nmap
+│   │   │       │   ├── __init__.py
+│   │   │       │   ├── plugin.py
+│   │   │       │   └── __pycache__
+│   │   │       │       ├── __init__.cpython-37.pyc
+│   │   │       │       └── plugin.cpython-37.pyc
+│   │   │       ├── openvas
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── pasteanalyzer
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── peepingtom
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── ping
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── propecia
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── __pycache__
+│   │   │       │   └── __init__.cpython-37.pyc
+│   │   │       ├── qualysguard
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── reconng
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── retina
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── reverseraider
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── sentinel
+│   │   │       │   └── plugin.py
+│   │   │       ├── skipfish
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── sqlmap
+│   │   │       │   ├── __init__.py
+│   │   │       │   ├── plugin.py
+│   │   │       │   └── queries.xml
+│   │   │       ├── sshdefaultscan
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── sslcheck
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── sslyze
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── sublist3r
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── telnet
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── theharvester
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── traceroute
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── w3af
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── wapiti
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── wcscan
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── webfuzzer
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── webinspect
+│   │   │       │   └── plugin.py
+│   │   │       ├── wfuzz
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── whois
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── wpscan
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── x1
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       ├── xsssniper
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── plugin.py
+│   │   │       └── zap
+│   │   │           ├── __init__.py
+│   │   │           ├── java
+│   │   │           │   ├── ConfigurationDialog.java
+│   │   │           │   ├── Configuration.java
+│   │   │           │   ├── FaradayClient.java
+│   │   │           │   ├── FaradayExtension.java
+│   │   │           │   ├── Messages.properties
+│   │   │           │   ├── PopupMenuItemSendAlert.java
+│   │   │           │   ├── PopupMenuItemSendRequest.java
+│   │   │           │   └── ZapAddOn.xml
+│   │   │           ├── plugin.py
+│   │   │           ├── report.xml
+│   │   │           └── zap-plugin.zap
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-37.pyc
+│   │   │   └── start_client.cpython-37.pyc
+│   │   ├── start_client.py
+│   │   └── zsh
+│   │       ├── faraday-terminal.zsh
+│   │       ├── faraday.zsh
+│   │       ├── __init__.py
+│   │       └── plugin_controller_client.py
+│   ├── config
+│   │   ├── configuration.py
+│   │   ├── constant.py
+│   │   ├── default.xml
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   │       ├── configuration.cpython-37.pyc
+│   │       ├── constant.cpython-37.pyc
+│   │       └── __init__.cpython-37.pyc
+│   ├── __init__.py
+│   ├── manage.py
+│   ├── migrations
+│   │   ├── env.py
+│   │   ├── __pycache__
+│   │   │   └── env.cpython-37.pyc
+│   │   ├── README
+│   │   ├── script.py.mako
+│   │   └── versions
+│   │       ├── 085188e0a016_create_rules_tables.py
+│   │       ├── 0d216660da28_add_notification_table.py
+│   │       ├── 1b2533cc16fe_fix_custom_fields_display_name_was_used_.py
+│   │       ├── 1dbe9e8e4247_add_rule_execution_start_and_end_fields.py
+│   │       ├── 2a0de6132377_add_searchfilter_table.py
+│   │       ├── 2ca03a8feef5_workspace_readonly.py
+│   │       ├── 2db31733fb78_unique_field_name_in_customfield.py
+│   │       ├── 3f771124f0a2_add_metadata_to_cf_schema.py
+│   │       ├── 526aa91cac98_vulnerability_merge_model.py
+│   │       ├── 5272b3f5a820_add_markdown_column_to_exectuive_reports.py
+│   │       ├── 59bed5515407_vuln_external_id.py
+│   │       ├── 8a10ff3926a5_2fa_columns.py
+│   │       ├── 904a517a2f0c_create_executor_table.py
+│   │       ├── 9c4091d1a09b_create_agent_table.py
+│   │       ├── be89aa03e35e_add_severities_column_to_executive_.py
+│   │       ├── e61afb450465_add_custom_fields.py
+│   │       ├── f8a44acd0e41_add_new_user_role.py
+│   │       └── __pycache__
+│   ├── __pycache__
+│   │   ├── __init__.cpython-37.pyc
+│   │   └── manage.cpython-37.pyc
+│   ├── requirements_server.txt -> ../requirements_server.txt
+│   ├── requirements.txt -> ../requirements.txt
+│   ├── searcher
+│   │   ├── api.py
+│   │   ├── __init__.py
+│   │   ├── searcher.py
+│   │   ├── sqlapi.py
+│   │   └── validator.py
+│   ├── server
+│   │   ├── api
+│   │   │   ├── base.py
+│   │   │   ├── __init__.py
+│   │   │   ├── modules
+│   │   │   │   ├── activity_feed.py
+│   │   │   │   ├── agent_auth_token.py
+│   │   │   │   ├── agent.py
+│   │   │   │   ├── bulk_create.py
+│   │   │   │   ├── commandsrun.py
+│   │   │   │   ├── comments.py
+│   │   │   │   ├── credentials.py
+│   │   │   │   ├── custom_fields.py
+│   │   │   │   ├── get_exploits.py
+│   │   │   │   ├── handlers.py
+│   │   │   │   ├── hosts.py
+│   │   │   │   ├── info.py
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── licenses.py
+│   │   │   │   ├── __pycache__
+│   │   │   │   ├── search_filter.py
+│   │   │   │   ├── services.py
+│   │   │   │   ├── session.py
+│   │   │   │   ├── token.py
+│   │   │   │   ├── upload_reports.py
+│   │   │   │   ├── vulnerability_template.py
+│   │   │   │   ├── vulns.py
+│   │   │   │   ├── websocket_auth.py
+│   │   │   │   └── workspaces.py
+│   │   │   └── __pycache__
+│   │   ├── app.py
+│   │   ├── commands
+│   │   │   ├── app_urls.py
+│   │   │   ├── change_password.py
+│   │   │   ├── change_username.py
+│   │   │   ├── custom_fields.py
+│   │   │   ├── faraday_schema_display.py
+│   │   │   ├── initdb.py
+│   │   │   ├── __init__.py
+│   │   │   ├── __pycache__
+│   │   │   ├── reset_db.py
+│   │   │   ├── status_check.py
+│   │   │   └── support.py
+│   │   ├── config.py
+│   │   ├── default.ini
+│   │   ├── events.py
+│   │   ├── fields.py
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   ├── __pycache__
+│   │   ├── schemas.py
+│   │   ├── threads
+│   │   │   ├── __init__.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── __init__.cpython-37.pyc
+│   │   │   │   └── reports_processor.cpython-37.pyc
+│   │   │   └── reports_processor.py
+│   │   ├── utils
+│   │   │   ├── cache.py
+│   │   │   ├── daemonize.py
+│   │   │   ├── database.py
+│   │   │   ├── debug.py
+│   │   │   ├── export.py
+│   │   │   ├── __init__.py
+│   │   │   ├── invalid_chars.py
+│   │   │   ├── logger.py
+│   │   │   ├── py3.py
+│   │   │   ├── __pycache__
+│   │   │   └── web.py
+│   │   ├── web.py
+│   │   ├── websocket_factories.py
+│   │   ├── workspaces
+│   │   └── www
+│   ├── start_server.py
+│   └── utils
+│       ├── common.py
+│       ├── decorators.py
+│       ├── dependencies.py
+│       ├── error_report.py
+│       ├── __init__.py
+│       ├── __pycache__
+│       └── user_input.py
+├── faraday_requirements.txt
+├── faradaysec.egg-info
+│   ├── dependency_links.txt
+│   ├── entry_points.txt
+│   ├── PKG-INFO
+│   ├── requires.txt
+│   ├── SOURCES.txt
+│   └── top_level.txt
+├── faraday-server.py
+├── fplugin.spec
+├── manage.py
+├── manage.spec
+├── MANIFEST.in
+├── merge-conflict-detector3.py
+├── merge-conflict-detector.py
+├── py3-checker.py
+├── README.md
+├── RELEASE.md
+├── requirements_dev.txt
+├── requirements_extras.txt
+├── requirements_server.txt
+├── requirements.txt
+├── scripts
+│   ├── cscan
+│   │   ├── CHANGES.txt
+│   │   ├── cscan_conf.ini
+│   │   ├── cscan.py
+│   │   ├── ips.txt
+│   │   ├── plugin
+│   │   │   ├── carbonator
+│   │   │   │   └── carbonator.py
+│   │   │   ├── msfrpc.py
+│   │   │   ├── nessus.py
+│   │   │   ├── w3af.py
+│   │   │   └── zap.py
+│   │   ├── README.md
+│   │   ├── scripts
+│   │   │   ├── extra
+│   │   │   │   ├── msf-autobrute.sh
+│   │   │   │   ├── msf-auto-cred-checker.sh
+│   │   │   │   ├── msf-autoexploit-check.sh
+│   │   │   │   ├── msf-autoexploit-dry.sh
+│   │   │   │   ├── msf-autoexploit.sh
+│   │   │   │   ├── msf-autosploit.sh
+│   │   │   │   ├── msf-modules-list.sh
+│   │   │   │   ├── msf-mssql-brute.sh
+│   │   │   │   ├── msf-nessus-vulns-cleaner.sh
+│   │   │   │   └── msf-port-cleaner.sh
+│   │   │   ├── network
+│   │   │   │   ├── msf-autoscan.sh
+│   │   │   │   ├── msf-basic-discovery-nmap.sh
+│   │   │   │   ├── msf-basic-discovery.sh
+│   │   │   │   ├── msf-portscan-nmap.sh
+│   │   │   │   ├── msf-portscan.sh
+│   │   │   │   ├── nessus.sh
+│   │   │   │   ├── nmap.sh
+│   │   │   │   └── openvas.sh
+│   │   │   ├── resources
+│   │   │   │   ├── autoscan.rc
+│   │   │   │   └── autosploit.rc
+│   │   │   └── web
+│   │   │       ├── burp.sh
+│   │   │       ├── msf-autocrawler.sh
+│   │   │       ├── msf-http-dir.sh
+│   │   │       ├── msf-wmap-autotest.sh
+│   │   │       ├── nikto.sh
+│   │   │       ├── w3af.sh
+│   │   │       └── zap.sh
+│   │   └── websites.txt
+│   ├── fix_vulnweb_without_service.py
+│   ├── reposify
+│   │   ├── reposify_api.py
+│   │   └── reposify.py
+│   ├── shodan_faraday.py
+│   ├── shodan_strings
+│   │   ├── router.txt
+│   │   ├── scada.txt
+│   │   └── webcam.txt
+│   ├── sslcheck.py
+│   ├── wcscan.py
+│   └── wcscans
+│       ├── DotNetConfig.xsd
+│       ├── __init__.py
+│       ├── phpini.py
+│       └── webconfig.py
+├── searcher.spec
+├── setup.cfg
+├── setup.py
+├── shell.nix
+├── start_client.spec
+├── start_server.spec
+├── tests
+└── tests_web
+
+
 ```
 
-- 更新apt
-```
-$ sudo apt-get update
-```
-
-- 安装一些依赖
-```
-$ sudo apt-get install build-essential ipython python-setuptools \
-                python-pip python-dev libssl-dev \
-                libffi-dev pkg-config libxml2-dev \
-                libxslt1-dev libfreetype6-dev libpng-dev
-```
-
-- 安装虚拟环境virtualenv
-```
-$ pip install virtualenv
-```
-
-- 创建虚拟环境venv
-```
-$ virtualenv -p python3 venv
-```
-
-- 激活虚拟环境venv
-```
-$ source venv/bin/activat
-```
-
-- 安装依赖项
-```
-$ python setup.py develop
-```
-
-- 安装依赖项
-```
-$ pip install -r requirements.txt
-$ pip install -r requirements_server.txt
-$ pip install -r requirements_dev.txt
-```
-
-- 这期间会遇到一些错误提示：
-- 例如：cairo的错误
-```
-$ sudo apt-get install libcairo2-dev libjpeg-dev libgif-dev
-```
-
-- 例如：email-validator的错误
-```
-$ pip install email-validator
-```
-
-- 例如：psycopg2的错误，psycopg: Python.h: No such file or directory：
-```
-$ sudo apt-get install libpq-dev python-dev
-```
-
-
-- 需要根据你的python版本，安装对应的包，例如我的是3.7，则要安装python3.7-dev
-```
-$ sudo apt-get install python3.7-dev
-$ pip install psycopg2
-```
-
-
-- 例如：syslog_rfc5424_formatter的错误
-```
-$ pip install rfc5424syslog
-```
-
-- 例如：Import Error: no module named 'past'
-```
-$ pip install future
-```
-
-- 例如：No package 'gobject-introspection-1.0' found
-```
-$ sudo apt install libgirepository1.0-dev
-```
-
-
-- 启动postgresql数据库
-```
-$ sudo service postgresql start
-```
-
-- 进入目录
-```
-$ cd home/zhangsan/Workspace/faraday-3.10.2/faraday
-```
-
-- 初始化数据库
-```
-$ python faraday/manage.py initdb
-```
-- 这里会显示用户名：faraday，和一个随机创建的密码，一定要记录保存下来。
-
-
-- 启动服务器端
-```
-$ python faraday/start_server.py
-```
-
-- 打开网页：localhost:5985/
-- 输入用户名密码登录，提示密码错误，这是个bug，需要安装指定版本的包：
-```
-https://github.com/infobyte/faraday/issues/394
-```
-
-
-- 回到终端，激活虚拟环境faraday_venv，安装指定版本的包，必须安装这个版本，否则在登录网页的时候，会提示密码错误
-```
-$ source faraday_venv/bin/activat
-$ pip install Flask-Login==0.4.1
-$ pip install Werkzeug==0.16.0
-```
-
-## 以下是venv导出的pip包列表：
-- 《faraday_requirements.txt》
-
-```
-alabaster==0.7.12
-alembic==1.4.2
-attrs==19.3.0
-autobahn==20.4.3
-Automat==20.2.0
-Babel==2.8.0
-bcrypt==3.1.7
-beautifulsoup4==4.7.1
-blinker==1.4
-cachelib==0.1
-cairocffi==0.9.0
-certifi==2020.4.5.1
-cffi==1.14.0
-chardet==3.0.4
-cli-helpers==2.0.1
-click==7.1.2
-colorama==0.4.3
-configobj==5.0.6
-constantly==15.1.0
-cryptography==2.9.2
-deprecation==2.1.0
-distro==1.4.0
-dnspython==1.16.0
-docutils==0.16
-email-validator==1.1.1
-factory-boy==2.12.0
-Faker==4.1.0
-faraday-plugins==1.2
-# Editable install with no version control (faradaysec==3.10.2)
--e /home/zhangsan/Workspace/faraday-3.10.2
-filedepot==0.7.1
-filteralchemy-fork==0.1.0
-Flask==1.1.2
-Flask-BabelEx==0.9.4
-Flask-Classful==0.14.2
-Flask-KVSession-fork==0.6.3
-Flask-Login==0.4.1
-Flask-Mail==0.9.1
-Flask-Principal==0.4.0
-Flask-Restless==0.17.0
-Flask-Security==3.0.0
-Flask-Session==0.3.2
-Flask-SQLAlchemy==2.4.3
-Flask-WTF==0.14.3
-future==0.18.2
-html2text==2019.8.11
-humanize==2.4.0
-hyperlink==19.0.0
-hypothesis==4.18.3
-idna==2.9
-imagesize==1.2.0
-importlib-metadata==1.6.0
-incremental==17.5.0
-inflection==0.4.0
-IPy==1.0
-itsdangerous==1.1.0
-Jinja2==2.11.2
-lxml==4.3.3
-Mako==1.1.3
-MarkupSafe==1.1.1
-marshmallow==2.21.0
-marshmallow-sqlalchemy==0.15.0
-mimerender==0.6.0
-mockito==1.2.1
-more-itertools==8.3.0
-nplusone==1.0.0
-packaging==20.4
-passlib==1.7.2
-pgcli==2.1.1
-pgspecial==1.11.10
-Pillow==7.1.2
-pluggy==0.13.1
-prompt-toolkit==2.0.10
-psycopg2==2.8.5
-psycopg2-binary==2.8.4
-py==1.8.1
-pyasn1==0.4.8
-pyasn1-modules==0.2.8
-pycairo==1.18.1
-pycparser==2.20
-pydot==1.4.1
-Pygments==2.6.1
-PyGObject==3.32.1
-PyHamcrest==2.0.2
-pyOpenSSL==19.1.0
-pyparsing==2.4.7
-pypcapfile==0.12.0
-pytest==5.4.2
-pytest-factoryboy==2.0.3
-python-dateutil==2.8.1
-python-editor==1.0.4
-python-mimeparse==1.6.0
-pytz==2020.1
-requests==2.23.0
-responses==0.10.14
-service-identity==18.1.0
-setproctitle==1.1.10
-simplejson==3.17.0
-simplekv==0.13.0
-six==1.15.0
-snowballstemmer==2.0.0
-soupsieve==2.0.1
-speaklater==1.3
-Sphinx==3.0.4
-sphinxcontrib-applehelp==1.0.2
-sphinxcontrib-devhelp==1.0.2
-sphinxcontrib-htmlhelp==1.0.3
-sphinxcontrib-jsmath==1.0.1
-sphinxcontrib-qthelp==1.0.3
-sphinxcontrib-serializinghtml==1.1.4
-SQLAlchemy==1.3.17
-sqlalchemy-schemadisplay==1.3
-sqlparse==0.3.1
-syslog-rfc5424-formatter==1.1.1
-tabulate==0.8.7
-terminaltables==3.1.0
-text-unidecode==1.3
-tornado==6.0.4
-tqdm==4.46.0
-Twisted==20.3.0
-txaio==20.4.1
-Unidecode==1.1.1
-urllib3==1.25.9
-wcwidth==0.1.9
-webargs==5.5.3
-websocket-client==0.57.0
-Werkzeug==0.16.1
-Whoosh==2.7.4
-WTForms==2.3.1
-zipp==3.1.0
-zope.interface==5.1.0
-```
-
-
-## 客户端的安装和运行
-将 /home/zhangsan/Workspace/faraday-3.10.2 目录，
-复制粘贴出一份，命名为 /home/zhangsan/Workspace/faraday-client 。
-
-
-- 激活客户端的虚拟环境venv
-```
-$ source venv/bin/activat
-```
-
-- 启动 faraday 服务器端，保持正常运行
-
-```
-$ cd home/zhangsan/Workspace/faraday-client/faraday
-```
-
-- 启动 faraday 客户端，理论上客户端会自动连接到服务器端，不需要输入用户名和密码
-```
-$ python client/start_client.py
-```
-
-
-## 附上完全删除faraday的sh，方便重新安装...
-- 《clean_faraday_all.sh》
-
-```
-#!/bin/bash
-
-echo "## apt删除faraday-server"
-sudo apt purge -y faraday-server
-echo ""
-
-echo "## 启动postgresql"
-sudo service postgresql start
-echo ""
-
-echo "## 登录postgresql后，请手动执行："
-echo "# 1. drop database faraday ;"
-echo "# 2. drop role faraday_postgresql ;"
-
-sudo -u postgres psql
-# drop database faraday ;
-# drop role  faraday_postgresql ;
-echo ""
-
-echo "## 从faraday组删除你当前的登录用户zhangsan"
-sudo gpasswd -d zhangsan faraday
-echo ""
-sudo groupdel faraday
-echo ""
-sudo usermod -G faraday faraday
-echo ""
-
-echo "## 删除faraday用户"
-sudo userdel -r faraday
-echo ""
-echo ""
-echo "## 删除/home/faraday/.faraday目录"
-sudo rm -rf /home/faraday/.faraday
-echo ""
-echo "## 删除/home/zhangsan/.faraday目录"
-sudo rm -rf /home/zhangsan/.faraday
-echo ""
-echo "done!"
-echo ""
-```
 
