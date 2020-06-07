@@ -13,23 +13,30 @@ tags:
 因为faraday正在将client分离到一个单独的项目中：faraday-client，但是目前没有release版本。
 faraday的上一个稳定版本是3.10.2，包含服务器端和客户端，所以这里采用3.10.2进行二次开发的探(踩)索(坑)。
 
-> 
-友情提示：faraday安装成功之后，会创建一个 /home/zhangsan/.faraday 目录，
+
+***友情提示：***
+
+*faraday安装成功之后，会创建一个 /home/zhangsan/.faraday 目录，
 如果你发现你的系统中多出了一个 faraday 用户和组，或者多出了一个 /home/faraday/ 目录，
 或者你在控制台可以自动完成命令 $ faraday-server 等 带有 faraday 的任何东西，
 那么恭喜你，你的二次开发环境就算安装失败了，因为这个是通过deb安装才会出现的，不是源码安装的。
-用我下面提供的完全删除faraday的sh来删除faraday，重新安装吧。
+用我下面提供的完全删除faraday的sh来删除faraday，重新安装吧。*
 
-> 
-操作系统：ParrotOS 4.9.1  
+
+*我的操作系统：ParrotOS 4.9.1  
 一定部署在虚拟机上，快照是个好东西，我拍了20个快照，才把faraday装好。  
-建议先仔细看一遍官方 Development setup 的 wiki：https://github.com/infobyte/faraday/wiki/Development-setup  
-在 https://github.com/infobyte/faraday/releases 下载代码，我下载的是 https://github.com/infobyte/faraday/archive/v3.10.2.zip
+建议先仔细看一遍官方 Development setup 的 wiki：https://github.com/infobyte/faraday/wiki/Development-setup  *
 
 
 
 ## 服务器端安装和运行
-- 下载 faraday-3.10.2.zip 到本地之后，解压得到 /home/zhangsan/Workspace/faraday-3.10.2 目录。
+
+- 下载代码
+```
+https://github.com/infobyte/faraday/releases
+我下载的是 https://github.com/infobyte/faraday/archive/v3.10.2.zip
+下载 faraday-3.10.2.zip，解压得到 /home/zhangsan/Workspace/faraday-3.10.2 目录。
+```
 
 - 进入目录
 ```
@@ -356,6 +363,7 @@ echo ""
 echo "done!"
 echo ""
 ```
+
 
 
 
