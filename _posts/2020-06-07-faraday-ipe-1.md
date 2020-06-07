@@ -100,7 +100,6 @@ $ sudo apt-get install libpq-dev python-dev
 ```  
 $ sudo apt-get install python3.7-dev  
 $ pip install psycopg2  
-
 ```  
 
 
@@ -361,6 +360,7 @@ echo ""
 echo "done!"
 echo ""
 ```
+
 
 
 
