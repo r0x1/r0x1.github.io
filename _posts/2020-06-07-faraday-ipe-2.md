@@ -62,15 +62,10 @@ faraday-3.10.2
 │   ├── client
 │   │   ├── apis
 │   │   │   ├── __init__.py
-│   │   │   ├── __pycache__
-│   │   │   │   └── __init__.cpython-37.pyc
 │   │   │   └── rest
 │   │   │       ├── api.py
 │   │   │       ├── client.py
-│   │   │       ├── __init__.py
-│   │   │       └── __pycache__
-│   │   │           ├── api.cpython-37.pyc
-│   │   │           └── __init__.cpython-37.pyc
+│   │   │       └── __init__.py
 │   │   ├── bin
 │   │   │   ├── autoclose_vulns.py
 │   │   │   ├── change_vuln_status.py
@@ -94,7 +89,6 @@ faraday-3.10.2
 │   │   │   ├── list_hosts.py
 │   │   │   ├── list_ips.py
 │   │   │   ├── list_os.py
-│   │   │   ├── __pycache__
 │   │   │   └── screenshot_server.py
 │   │   ├── data
 │   │   │   └── images
@@ -109,7 +103,6 @@ faraday-3.10.2
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── mainwidgets.py
 │   │   │   │   ├── menubar.xml
-│   │   │   │   ├── __pycache__
 │   │   │   │   └── server.py
 │   │   │   ├── gui_app.py
 │   │   │   ├── __init__.py
@@ -118,8 +111,7 @@ faraday-3.10.2
 │   │   │   │   ├── application.py
 │   │   │   │   ├── eventwatcher.py
 │   │   │   │   └── __init__.py
-│   │   │   ├── notifier.py
-│   │   │   └── __pycache__
+│   │   │   └── notifier.py
 │   │   ├── helpers
 │   │   │   ├── cfdbToCsv.py
 │   │   │   ├── cleanXML.py
@@ -134,7 +126,6 @@ faraday-3.10.2
 │   │   │   ├── all.py
 │   │   │   ├── __init__.py
 │   │   │   ├── mapper_manager.py
-│   │   │   ├── __pycache__
 │   │   │   ├── reports_managers.py
 │   │   │   └── workspace_manager.py
 │   │   ├── model
@@ -150,7 +141,6 @@ faraday-3.10.2
 │   │   │   ├── guiapi.py
 │   │   │   ├── __init__.py
 │   │   │   ├── log.py
-│   │   │   ├── __pycache__
 │   │   │   ├── session.py
 │   │   │   ├── timeline.py
 │   │   │   ├── views.py
@@ -158,7 +148,6 @@ faraday-3.10.2
 │   │   │   └── workspace.py
 │   │   ├── persistence
 │   │   │   ├── __init__.py
-│   │   │   ├── __pycache__
 │   │   │   └── server
 │   │   │       ├── changes_stream.py
 │   │   │       ├── docs
@@ -243,7 +232,6 @@ faraday-3.10.2
 │   │   │       │   └── server.rst
 │   │   │       ├── __init__.py
 │   │   │       ├── models.py
-│   │   │       ├── __pycache__
 │   │   │       ├── server_io_exceptions.py
 │   │   │       ├── server.py
 │   │   │       └── utils.py
@@ -257,7 +245,6 @@ faraday-3.10.2
 │   │   │   ├── plugins_utils.py
 │   │   │   ├── plugin_utils.py
 │   │   │   ├── port_mapper.txt
-│   │   │   ├── __pycache__
 │   │   │   └── repo
 │   │   │       ├── acunetix
 │   │   │       │   ├── __init__.py
@@ -369,7 +356,6 @@ faraday-3.10.2
 │   │   │       │   ├── dotnessus_v2.py
 │   │   │       │   ├── __init__.py
 │   │   │       │   ├── plugin.py
-│   │   │       │   ├── __pycache__
 │   │   │       │   └── pynessus.py
 │   │   │       ├── netcat
 │   │   │       │   ├── __init__.py
@@ -391,8 +377,7 @@ faraday-3.10.2
 │   │   │       │   └── plugin.py
 │   │   │       ├── nmap
 │   │   │       │   ├── __init__.py
-│   │   │       │   ├── plugin.py
-│   │   │       │   └── __pycache__
+│   │   │       │   └── plugin.py
 │   │   │       ├── openvas
 │   │   │       │   ├── __init__.py
 │   │   │       │   └── plugin.py
@@ -408,7 +393,6 @@ faraday-3.10.2
 │   │   │       ├── propecia
 │   │   │       │   ├── __init__.py
 │   │   │       │   └── plugin.py
-│   │   │       ├── __pycache__
 │   │   │       ├── qualysguard
 │   │   │       │   ├── __init__.py
 │   │   │       │   └── plugin.py
@@ -494,9 +478,6 @@ faraday-3.10.2
 │   │   │           ├── plugin.py
 │   │   │           ├── report.xml
 │   │   │           └── zap-plugin.zap
-│   │   ├── __pycache__
-│   │   │   ├── __init__.cpython-37.pyc
-│   │   │   └── start_client.cpython-37.pyc
 │   │   ├── start_client.py
 │   │   └── zsh
 │   │       ├── faraday-terminal.zsh
@@ -507,13 +488,11 @@ faraday-3.10.2
 │   │   ├── configuration.py
 │   │   ├── constant.py
 │   │   ├── default.xml
-│   │   ├── __init__.py
-│   │   └── __pycache__
+│   │   └── __init__.py
 │   ├── __init__.py
 │   ├── manage.py
 │   ├── migrations
 │   │   ├── env.py
-│   │   ├── __pycache__
 │   │   ├── README
 │   │   ├── script.py.mako
 │   │   └── versions
@@ -533,11 +512,7 @@ faraday-3.10.2
 │   │       ├── 9c4091d1a09b_create_agent_table.py
 │   │       ├── be89aa03e35e_add_severities_column_to_executive_.py
 │   │       ├── e61afb450465_add_custom_fields.py
-│   │       ├── f8a44acd0e41_add_new_user_role.py
-│   │       └── __pycache__
-│   ├── __pycache__
-│   │   ├── __init__.cpython-37.pyc
-│   │   └── manage.cpython-37.pyc
+│   │       └── f8a44acd0e41_add_new_user_role.py
 │   ├── requirements_server.txt -> ../requirements_server.txt
 │   ├── requirements.txt -> ../requirements.txt
 │   ├── searcher
@@ -550,32 +525,30 @@ faraday-3.10.2
 │   │   ├── api
 │   │   │   ├── base.py
 │   │   │   ├── __init__.py
-│   │   │   ├── modules
-│   │   │   │   ├── activity_feed.py
-│   │   │   │   ├── agent_auth_token.py
-│   │   │   │   ├── agent.py
-│   │   │   │   ├── bulk_create.py
-│   │   │   │   ├── commandsrun.py
-│   │   │   │   ├── comments.py
-│   │   │   │   ├── credentials.py
-│   │   │   │   ├── custom_fields.py
-│   │   │   │   ├── get_exploits.py
-│   │   │   │   ├── handlers.py
-│   │   │   │   ├── hosts.py
-│   │   │   │   ├── info.py
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── licenses.py
-│   │   │   │   ├── __pycache__
-│   │   │   │   ├── search_filter.py
-│   │   │   │   ├── services.py
-│   │   │   │   ├── session.py
-│   │   │   │   ├── token.py
-│   │   │   │   ├── upload_reports.py
-│   │   │   │   ├── vulnerability_template.py
-│   │   │   │   ├── vulns.py
-│   │   │   │   ├── websocket_auth.py
-│   │   │   │   └── workspaces.py
-│   │   │   └── __pycache__
+│   │   │   └── modules
+│   │   │       ├── activity_feed.py
+│   │   │       ├── agent_auth_token.py
+│   │   │       ├── agent.py
+│   │   │       ├── bulk_create.py
+│   │   │       ├── commandsrun.py
+│   │   │       ├── comments.py
+│   │   │       ├── credentials.py
+│   │   │       ├── custom_fields.py
+│   │   │       ├── get_exploits.py
+│   │   │       ├── handlers.py
+│   │   │       ├── hosts.py
+│   │   │       ├── info.py
+│   │   │       ├── __init__.py
+│   │   │       ├── licenses.py
+│   │   │       ├── search_filter.py
+│   │   │       ├── services.py
+│   │   │       ├── session.py
+│   │   │       ├── token.py
+│   │   │       ├── upload_reports.py
+│   │   │       ├── vulnerability_template.py
+│   │   │       ├── vulns.py
+│   │   │       ├── websocket_auth.py
+│   │   │       └── workspaces.py
 │   │   ├── app.py
 │   │   ├── commands
 │   │   │   ├── app_urls.py
@@ -585,7 +558,6 @@ faraday-3.10.2
 │   │   │   ├── faraday_schema_display.py
 │   │   │   ├── initdb.py
 │   │   │   ├── __init__.py
-│   │   │   ├── __pycache__
 │   │   │   ├── reset_db.py
 │   │   │   ├── status_check.py
 │   │   │   └── support.py
@@ -595,11 +567,9 @@ faraday-3.10.2
 │   │   ├── fields.py
 │   │   ├── __init__.py
 │   │   ├── models.py
-│   │   ├── __pycache__
 │   │   ├── schemas.py
 │   │   ├── threads
 │   │   │   ├── __init__.py
-│   │   │   ├── __pycache__
 │   │   │   └── reports_processor.py
 │   │   ├── utils
 │   │   │   ├── cache.py
@@ -611,7 +581,6 @@ faraday-3.10.2
 │   │   │   ├── invalid_chars.py
 │   │   │   ├── logger.py
 │   │   │   ├── py3.py
-│   │   │   ├── __pycache__
 │   │   │   └── web.py
 │   │   ├── web.py
 │   │   ├── websocket_factories.py
@@ -624,7 +593,6 @@ faraday-3.10.2
 │       ├── dependencies.py
 │       ├── error_report.py
 │       ├── __init__.py
-│       ├── __pycache__
 │       └── user_input.py
 ├── faraday_requirements.txt
 ├── faradaysec.egg-info
@@ -722,6 +690,7 @@ faraday-3.10.2
 
 
 ```
+
 
 
 
