@@ -475,7 +475,7 @@ image: null
     │   │   │           ├── plugin.py
     │   │   │           ├── report.xml
     │   │   │           └── zap-plugin.zap
-    │   │   ├── start_client.py
+    │   │   ├── start_client.py ─────────────── 「运行 $ python start_client.py 启动客户端」
     │   │   └── zsh
     │   │       ├── faraday-terminal.zsh
     │   │       ├── faraday.zsh
@@ -487,7 +487,7 @@ image: null
     │   │   ├── default.xml
     │   │   └── __init__.py
     │   ├── __init__.py
-    │   ├── manage.py
+    │   ├── manage.py ─────────────── 「运行 $ python faraday/manage.py initdb 初始化数据库」
     │   ├── migrations ─────────────── 「这里是用来版本升级的脚本，例如从3.10.2升级到3.11」
     │   │   ├── env.py
     │   │   ├── README
@@ -583,7 +583,7 @@ image: null
     │   │   ├── websocket_factories.py
     │   │   ├── workspaces
     │   │   └── www
-    │   ├── start_server.py
+    │   ├── start_server.py ─────────────── 「运行 $ python start_server.py 启动服务器端」
     │   └── utils
     │       ├── common.py
     │       ├── decorators.py
@@ -678,7 +678,7 @@ image: null
     │       └── webconfig.py
     ├── searcher.spec
     ├── setup.cfg
-    ├── setup.py ─────────────── 「?」
+    ├── setup.py ─────────────── 「运行 python setup.py develop 安装依赖项」
     ├── shell.nix
     ├── start_client.spec
     ├── start_server.spec
@@ -686,3 +686,4 @@ image: null
     └── tests_web
     
     
+
