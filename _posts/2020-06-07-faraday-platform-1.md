@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Faraday Platform 二次开发 (1) 配置环境
-date: 06/07/2020 9:57 AM
+date: 06/06/2020 9:57 AM
 tags:
   - faraday
 image: null
@@ -362,4 +362,5 @@ echo ""
 echo "done!"
 echo ""
 ```
+
 
