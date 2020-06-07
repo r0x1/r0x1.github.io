@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Faraday IPE 二次开发 (2) 功能与目录
-date: 2020-06-07T00:00:00+00:00
+title: 'Faraday IPE 二次开发 (2) 功能与目录[未完成]'
+date: 2020-06-07T00:00:00.000Z
 tags:
   - faraday
 image: null
@@ -787,6 +787,7 @@ faraday-3.10.2
 
 
 ```
+
 
 
 
