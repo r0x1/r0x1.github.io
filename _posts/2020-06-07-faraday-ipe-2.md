@@ -56,8 +56,8 @@ image: null
     │   └── reference.rst
     ├── faraday ─────────────── 「faraday 的主目录」
     │   ├── alembic.ini
-    │   ├── client ─────────────── 「客户端的目录」
-    │   │   ├── apis
+    │   ├── client ─────────────── 「客户端的主目录」
+    │   │   ├── apis ─────────────── 「客户端api目录，faraday 的灵魂之一」
     │   │   │   ├── __init__.py
     │   │   │   └── rest
     │   │   │       ├── api.py
@@ -128,7 +128,7 @@ image: null
     │   │   ├── model
     │   │   │   ├── api.py
     │   │   │   ├── application.py
-    │   │   │   ├── cli_app.py
+    │   │   │   ├── cli_app.py ─────────────── 「用命令行处理和发送扫描报告给服务器端，faraday 的灵魂之一」
     │   │   │   ├── commands_history.py
     │   │   │   ├── common.py
     │   │   │   ├── conflict.py
@@ -232,7 +232,7 @@ image: null
     │   │   │       ├── server_io_exceptions.py
     │   │   │       ├── server.py
     │   │   │       └── utils.py
-    │   │   ├── plugins ─────────────── 「插件的主目录」
+    │   │   ├── plugins ─────────────── 「插件的主目录，用python来适配各种工具和命令」
     │   │   │   ├── controller.py
     │   │   │   ├── core.py
     │   │   │   ├── fplugin_utils.py
@@ -242,7 +242,7 @@ image: null
     │   │   │   ├── plugins_utils.py
     │   │   │   ├── plugin_utils.py
     │   │   │   ├── port_mapper.txt
-    │   │   │   └── repo ─────────────── 「每个插件的目录，这是 faraday 的重点之一，灵魂之一」
+    │   │   │   └── repo ─────────────── 「每个插件的目录，这是 faraday 的灵魂之一」
     │   │   │       ├── acunetix
     │   │   │       │   ├── __init__.py
     │   │   │       │   └── plugin.py
@@ -333,7 +333,7 @@ image: null
     │   │   │       │   └── plugin.py
     │   │   │       ├── masscan ─────────────── 「masscan 工具」
     │   │   │       │   ├── __init__.py
-    │   │   │       │   └── plugin.py
+    │   │   │       │   └── plugin.py ─────────────── 「解析 masscan 的扫描结果」
     │   │   │       ├── medusa
     │   │   │       │   ├── __init__.py
     │   │   │       │   └── plugin.py
@@ -374,7 +374,7 @@ image: null
     │   │   │       │   └── plugin.py
     │   │   │       ├── nmap ─────────────── 「nmap 工具」
     │   │   │       │   ├── __init__.py
-    │   │   │       │   └── plugin.py
+    │   │   │       │   └── plugin.py ─────────────── 「解析 nmap 的扫描结果」
     │   │   │       ├── openvas
     │   │   │       │   ├── __init__.py
     │   │   │       │   └── plugin.py
@@ -519,7 +519,7 @@ image: null
     │   │   ├── sqlapi.py
     │   │   └── validator.py
     │   ├── server ─────────────── 「server 端主目录」
-    │   │   ├── api ─────────────── 「faraday 的重点功能之一，灵魂之一」
+    │   │   ├── api ─────────────── 「faraday 的灵魂之一」
     │   │   │   ├── base.py
     │   │   │   ├── __init__.py
     │   │   │   └── modules
@@ -678,7 +678,7 @@ image: null
     │       └── webconfig.py
     ├── searcher.spec
     ├── setup.cfg
-    ├── setup.py ─────────────── 「运行 python setup.py develop 安装依赖项」
+    ├── setup.py ─────────────── 「运行 $ python setup.py develop 安装依赖项」
     ├── shell.nix
     ├── start_client.spec
     ├── start_server.spec
@@ -686,4 +686,5 @@ image: null
     └── tests_web
     
     
+
 
