@@ -8,12 +8,10 @@ image: null
 ---
 > 基于 faraday 3.10.2，因为3.11的faraday_client分到了单独的项目，而且暂时没有release。
 
-faraday-3.10.2
-
 
 
 ```
-
+faraday-3.10.2
 .
 ├── absolutize
 │   ├── fix_files_structure.sh
@@ -97,27 +95,6 @@ faraday-3.10.2
 │   │   │   ├── list_ips.py
 │   │   │   ├── list_os.py
 │   │   │   ├── __pycache__
-│   │   │   │   ├── autoclose_vulns.cpython-37.pyc
-│   │   │   │   ├── change_vuln_status.cpython-37.pyc
-│   │   │   │   ├── create_cred.cpython-37.pyc
-│   │   │   │   ├── create_host.cpython-37.pyc
-│   │   │   │   ├── create_service.cpython-37.pyc
-│   │   │   │   ├── create_vuln.cpython-37.pyc
-│   │   │   │   ├── create_vulnweb.cpython-37.pyc
-│   │   │   │   ├── del_all_hosts.cpython-37.pyc
-│   │   │   │   ├── del_all_services_closed.cpython-37.pyc
-│   │   │   │   ├── del_all_vulns_with.cpython-37.pyc
-│   │   │   │   ├── fbruteforce_services.cpython-37.pyc
-│   │   │   │   ├── filter_services.cpython-37.pyc
-│   │   │   │   ├── get_all_ips.cpython-37.pyc
-│   │   │   │   ├── get_severitiy_by_cwe.cpython-37.pyc
-│   │   │   │   ├── import_csv.cpython-37.pyc
-│   │   │   │   ├── import_pcap.cpython-37.pyc
-│   │   │   │   ├── list_creds.cpython-37.pyc
-│   │   │   │   ├── list_hosts.cpython-37.pyc
-│   │   │   │   ├── list_ips.cpython-37.pyc
-│   │   │   │   ├── list_os.cpython-37.pyc
-│   │   │   │   └── screenshot_server.cpython-37.pyc
 │   │   │   └── screenshot_server.py
 │   │   ├── data
 │   │   │   └── images
@@ -133,14 +110,6 @@ faraday-3.10.2
 │   │   │   │   ├── mainwidgets.py
 │   │   │   │   ├── menubar.xml
 │   │   │   │   ├── __pycache__
-│   │   │   │   │   ├── application.cpython-37.pyc
-│   │   │   │   │   ├── appwindow.cpython-37.pyc
-│   │   │   │   │   ├── compatibility.cpython-37.pyc
-│   │   │   │   │   ├── decorators.cpython-37.pyc
-│   │   │   │   │   ├── dialogs.cpython-37.pyc
-│   │   │   │   │   ├── __init__.cpython-37.pyc
-│   │   │   │   │   ├── mainwidgets.cpython-37.pyc
-│   │   │   │   │   └── server.cpython-37.pyc
 │   │   │   │   └── server.py
 │   │   │   ├── gui_app.py
 │   │   │   ├── __init__.py
@@ -151,11 +120,6 @@ faraday-3.10.2
 │   │   │   │   └── __init__.py
 │   │   │   ├── notifier.py
 │   │   │   └── __pycache__
-│   │   │       ├── customevents.cpython-37.pyc
-│   │   │       ├── gui_app.cpython-37.pyc
-│   │   │       ├── __init__.cpython-37.pyc
-│   │   │       ├── loghandler.cpython-37.pyc
-│   │   │       └── notifier.cpython-37.pyc
 │   │   ├── helpers
 │   │   │   ├── cfdbToCsv.py
 │   │   │   ├── cleanXML.py
@@ -171,10 +135,6 @@ faraday-3.10.2
 │   │   │   ├── __init__.py
 │   │   │   ├── mapper_manager.py
 │   │   │   ├── __pycache__
-│   │   │   │   ├── __init__.cpython-37.pyc
-│   │   │   │   ├── mapper_manager.cpython-37.pyc
-│   │   │   │   ├── reports_managers.cpython-37.pyc
-│   │   │   │   └── workspace_manager.cpython-37.pyc
 │   │   │   ├── reports_managers.py
 │   │   │   └── workspace_manager.py
 │   │   ├── model
@@ -284,12 +244,6 @@ faraday-3.10.2
 │   │   │       ├── __init__.py
 │   │   │       ├── models.py
 │   │   │       ├── __pycache__
-│   │   │       │   ├── changes_stream.cpython-37.pyc
-│   │   │       │   ├── __init__.cpython-37.pyc
-│   │   │       │   ├── models.cpython-37.pyc
-│   │   │       │   ├── server.cpython-37.pyc
-│   │   │       │   ├── server_io_exceptions.cpython-37.pyc
-│   │   │       │   └── utils.cpython-37.pyc
 │   │   │       ├── server_io_exceptions.py
 │   │   │       ├── server.py
 │   │   │       └── utils.py
@@ -304,14 +258,6 @@ faraday-3.10.2
 │   │   │   ├── plugin_utils.py
 │   │   │   ├── port_mapper.txt
 │   │   │   ├── __pycache__
-│   │   │   │   ├── controller.cpython-37.pyc
-│   │   │   │   ├── core.cpython-37.pyc
-│   │   │   │   ├── fplugin_utils.cpython-37.pyc
-│   │   │   │   ├── __init__.cpython-37.pyc
-│   │   │   │   ├── manager.cpython-37.pyc
-│   │   │   │   ├── plugin.cpython-37.pyc
-│   │   │   │   ├── plugins_utils.cpython-37.pyc
-│   │   │   │   └── plugin_utils.cpython-37.pyc
 │   │   │   └── repo
 │   │   │       ├── acunetix
 │   │   │       │   ├── __init__.py
@@ -424,8 +370,6 @@ faraday-3.10.2
 │   │   │       │   ├── __init__.py
 │   │   │       │   ├── plugin.py
 │   │   │       │   ├── __pycache__
-│   │   │       │   │   ├── dotnessus_v2.cpython-37.pyc
-│   │   │       │   │   └── __init__.cpython-37.pyc
 │   │   │       │   └── pynessus.py
 │   │   │       ├── netcat
 │   │   │       │   ├── __init__.py
@@ -449,8 +393,6 @@ faraday-3.10.2
 │   │   │       │   ├── __init__.py
 │   │   │       │   ├── plugin.py
 │   │   │       │   └── __pycache__
-│   │   │       │       ├── __init__.cpython-37.pyc
-│   │   │       │       └── plugin.cpython-37.pyc
 │   │   │       ├── openvas
 │   │   │       │   ├── __init__.py
 │   │   │       │   └── plugin.py
@@ -467,7 +409,6 @@ faraday-3.10.2
 │   │   │       │   ├── __init__.py
 │   │   │       │   └── plugin.py
 │   │   │       ├── __pycache__
-│   │   │       │   └── __init__.cpython-37.pyc
 │   │   │       ├── qualysguard
 │   │   │       │   ├── __init__.py
 │   │   │       │   └── plugin.py
@@ -568,15 +509,11 @@ faraday-3.10.2
 │   │   ├── default.xml
 │   │   ├── __init__.py
 │   │   └── __pycache__
-│   │       ├── configuration.cpython-37.pyc
-│   │       ├── constant.cpython-37.pyc
-│   │       └── __init__.cpython-37.pyc
 │   ├── __init__.py
 │   ├── manage.py
 │   ├── migrations
 │   │   ├── env.py
 │   │   ├── __pycache__
-│   │   │   └── env.cpython-37.pyc
 │   │   ├── README
 │   │   ├── script.py.mako
 │   │   └── versions
@@ -663,8 +600,6 @@ faraday-3.10.2
 │   │   ├── threads
 │   │   │   ├── __init__.py
 │   │   │   ├── __pycache__
-│   │   │   │   ├── __init__.cpython-37.pyc
-│   │   │   │   └── reports_processor.cpython-37.pyc
 │   │   │   └── reports_processor.py
 │   │   ├── utils
 │   │   │   ├── cache.py
@@ -787,6 +722,7 @@ faraday-3.10.2
 
 
 ```
+
 
 
 
