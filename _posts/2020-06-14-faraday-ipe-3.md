@@ -9,7 +9,6 @@ image: null
 > 基于 faraday 3.10.2，因为3.11的faraday_client分到了单独的项目，而且暂时没有release。
 
 
-连接数据库
 
 ```
 $sudo -u postgres psql「登录postgresql」
@@ -90,6 +89,7 @@ faraday=# \dt「列出所有表」
 
 
 ```
+
 
 
 
