@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Monochrome | A minimal, responsive Jekyll blog theme</title>
+  <meta name="description" content="A minimal, responsive, ready to use blog template, built with Jekyll.">
+
+	<!-- CSS & fonts -->
+	<link rel="stylesheet" href="/monochrome/css/main.css">
+
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/monochrome/">Home</a>
+
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	      <a href="/monochrome/about" title="About Monochrome">About Monochrome</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    
+    <!-- Nav links -->
+	  <a href="https://github.com/thereviewindex/monochrome/archive/master.zip">Download</a>
+<a href="https://github.com/thereviewindex/monochrome">Project on Github</a>
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <footer>
+	
+	<span>version 1.0.0</span>
+
+</footer>
+	
+
+</nav>
+
+    
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+
+      <!-- Header -->
+      
+        <header id="header" class="parent justify-spaceBetween">
+  <div class="inner w100 relative">
+    <span class="f-left">  
+      <a href="/monochrome/">
+        <h1>
+          <span>mono</span>chrome
+        </h1>
+      </a>
+    </span>
+    <span id="nav-links" class="absolute right bottom">
+      <!-- Nav pages -->
+	    
+	      
+	    
+	      
+	        <a href="/monochrome/about" title="About Monochrome">About Monochrome</a>
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+      
+      <!-- Nav links -->
+	    <a href="https://github.com/thereviewindex/monochrome/archive/master.zip">Download</a>
+<a href="https://github.com/thereviewindex/monochrome">Project on Github</a>
+
+
+    </span>
+  </div>
+</header>
+
+
+
+
+      
+
+    <!-- Main content -->
+	  <div id="container">
+		  
+		<main>
+
+			<!-- Posts -->
+<ul id="posts">
+
+	
+
+	  <li class="post">
+	  	<h2><a href="/monochrome/faraday-ipe-3">Faraday IPE 二次开发 (3) 数据库结构[未完成]</a></h2>
+      <time datetime="2020-06-14T19:17:57+08:00" class="by-line"> <i>14 Jun 2020</i> </time>
+	  	<p>基于 faraday 3.10.2，因为3.11的faraday_client分到了单独的项目，而且暂时没有release。 $sudo -u postgres psql「登录postgresql」 psql (12.3 (Debian 12.3-1+b1)) Type "help" for help. postgres=# \l「列出所有数据库」 List of databases Name | Owner | Encoding | Collate | Ctype | Access privileges -----------+--------------------+----------+---------+---------+----------------------- faraday | faraday_postgresql | UTF8 | C.UTF-8 | C.UTF-8 | postgres | postgres | UTF8 | C.UTF-8...</p>
+	  </li>
+
+    
+
+	  <li class="post">
+	  	<h2><a href="/monochrome/faraday-ipe-2">Faraday IPE 二次开发 (2) 功能与目录[未完成]</a></h2>
+      <time datetime="2020-06-07T08:00:00+08:00" class="by-line"> <i>07 Jun 2020</i> </time>
+	  	<p>基于 faraday 3.10.2，因为3.11的faraday_client分到了单独的项目，而且暂时没有release。 faraday-3.10.2 . ├── absolutize │ ├── fix_files_structure.sh │ ├── fix_nontrivial_imports.sh │ └── fix_trivial_imports.sh ├── AUTHORS ├── buildpth.nix ├── buildpth.sh ├── CHANGELOG ├── credentials.json ├── data │ ├── cwe.csv │ ├── cwe_en.csv │ ├── cwe_es.csv │ └── fix_severities.py ├── debian │ ├── changelog │ ├── compat │ ├──...</p>
+	  </li>
+
+    
+
+	  <li class="post">
+	  	<h2><a href="/monochrome/faraday-ipe-1">Faraday IPE 二次开发 (1) 安装</a></h2>
+      <time datetime="2020-06-07T08:00:00+08:00" class="by-line"> <i>07 Jun 2020</i> </time>
+	  	<p>2020-06-07，faraday最新版是3.11.1。但是，只有服务器端，没有客户端。 因为faraday正在将client分离到一个单独的项目中：faraday-client，但是目前没有release版本。 faraday的上一个稳定版本是3.10.2，包含服务器端和客户端，所以这里采用3.10.2进行二次开发的探(踩)索(坑)。 友情提示 faraday安装成功之后，会创建一个 /home/zhangsan/.faraday 目录， 如果你发现你的系统中多出了一个 faraday 用户和组，或者多出了一个 /home/faraday/ 目录， 或者你在控制台可以自动完成命令 $ faraday-server 等 带有 faraday 的任何东西， 那么恭喜你，你的二次开发环境就算安装失败了，因为这个是通过deb安装才会出现的，不是源码安装的。 用我下面提供的完全删除faraday的sh来删除faraday，重新安装吧。 我的操作系统：ParrotOS 4.9.1，理论上与Kali的操作相同 一定部署在虚拟机上，快照是个好东西，我拍了20个快照，才把faraday装好。 建议先仔细看一遍官方 Development setup 的 wiki：https://github.com/infobyte/faraday/wiki/Development-setup 服务器端安装和运行 下载代码 访问 https://github.com/infobyte/faraday/releases 我下载的是 https://github.com/infobyte/faraday/archive/v3.10.2.zip 下载 faraday-3.10.2.zip 到本地，解压得到 /home/zhangsan/Workspace/faraday-3.10.2 目录 进入目录 $ cd faraday-3.10.2 更新apt $ sudo apt-get update 安装一些依赖...</p>
+	  </li>
+
+    
+
+</ul>
+
+
+	  </main>
+		
+		  <!-- Pagination links -->
+      
+
+	  </div>
+	    
+	    <!-- Footer -->
+	    <footer><span>@2017 - Monochrome</span></footer>
+
+
+	    <!-- Script -->
+      <script src="/monochrome/js/main.js"></script>	
+
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Monochrome | A minimal, responsive Jekyll blog theme</title>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <id>http://localhost:4000</id>
+ <updated>2020-06-14T22:16:09+08:00</updated>
+ <author>
+   <name>The Review Index</name>
+   <uri>https://thereviewindex.com</uri>
+   <email>dyutibarma@gmail.com</email>
+ </author>
+
+ 
+
+ <entry>
+   <title>Faraday IPE 二次开发 (3) 数据库结构[未完成]</title>
+   <link href="http://localhost:4000/faraday-ipe-3"/>
+   <id>http://localhost:4000/faraday-ipe-3</id>
+   <updated>2020-06-14T19:17:57+08:00</updated>
+   <content type="html">&lt;blockquote&gt; &lt;p&gt;基于 faraday 3.10.2，因为3.11的faraday_client分到了单独的项目，而且暂时没有release。&lt;/p&gt; &lt;/blockquote&gt; &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$sudo -u postgres psql「登录postgresql」 psql (12.3 (Debian 12.3-1+b1)) Type &quot;help&quot; for help. postgres=# \l「列出所有数据库」 List of databases Name | Owner | Encoding | Collate | Ctype | Access privileges -----------+--------------------+----------+---------+---------+----------------------- faraday | faraday_postgresql | UTF8 | C.UTF-8 | C.UTF-8 | postgres...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Faraday IPE 二次开发 (2) 功能与目录[未完成]</title>
+   <link href="http://localhost:4000/faraday-ipe-2"/>
+   <id>http://localhost:4000/faraday-ipe-2</id>
+   <updated>2020-06-07T08:00:00+08:00</updated>
+   <content type="html">&lt;blockquote&gt; &lt;p&gt;基于 faraday 3.10.2，因为3.11的faraday_client分到了单独的项目，而且暂时没有release。&lt;/p&gt; &lt;/blockquote&gt; &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;faraday-3.10.2 . ├── absolutize │ ├── fix_files_structure.sh │ ├── fix_nontrivial_imports.sh │ └── fix_trivial_imports.sh ├── AUTHORS ├── buildpth.nix ├── buildpth.sh ├── CHANGELOG ├── credentials.json ├── data │ ├── cwe.csv │ ├── cwe_en.csv │ ├── cwe_es.csv │ └── fix_severities.py ├── debian │ ├──...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Faraday IPE 二次开发 (1) 安装</title>
+   <link href="http://localhost:4000/faraday-ipe-1"/>
+   <id>http://localhost:4000/faraday-ipe-1</id>
+   <updated>2020-06-07T08:00:00+08:00</updated>
+   <content type="html">&lt;blockquote&gt; &lt;p&gt;2020-06-07，faraday最新版是3.11.1。但是，只有服务器端，没有客户端。 因为faraday正在将client分离到一个单独的项目中：faraday-client，但是目前没有release版本。 faraday的上一个稳定版本是3.10.2，包含服务器端和客户端，所以这里采用3.10.2进行二次开发的探(踩)索(坑)。&lt;/p&gt; &lt;/blockquote&gt; &lt;p&gt;&lt;strong&gt;&lt;em&gt;友情提示&lt;/em&gt;&lt;/strong&gt;&lt;br /&gt; &lt;em&gt;faraday安装成功之后，会创建一个 /home/zhangsan/.faraday 目录， 如果你发现你的系统中多出了一个 faraday 用户和组，或者多出了一个 /home/faraday/ 目录， 或者你在控制台可以自动完成命令 $ faraday-server 等 带有 faraday 的任何东西， 那么恭喜你，你的二次开发环境就算安装失败了，因为这个是通过deb安装才会出现的，不是源码安装的。 用我下面提供的完全删除faraday的sh来删除faraday，重新安装吧。&lt;/em&gt;&lt;/p&gt; &lt;p&gt;&lt;em&gt;我的操作系统：ParrotOS 4.9.1，理论上与Kali的操作相同&lt;br /&gt; 一定部署在虚拟机上，快照是个好东西，我拍了20个快照，才把faraday装好。&lt;br /&gt; 建议先仔细看一遍官方 Development setup 的 wiki：https://github.com/infobyte/faraday/wiki/Development-setup&lt;/em&gt;&lt;/p&gt; &lt;h2 id=&quot;服务器端安装和运行&quot;&gt;服务器端安装和运行&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;下载代码 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;访问 https://github.com/infobyte/faraday/releases 我下载的是 https://github.com/infobyte/faraday/archive/v3.10.2.zip 下载 faraday-3.10.2.zip 到本地，解压得到 /home/zhangsan/Workspace/faraday-3.10.2...</content>
+ </entry>
+
+ 
+
+</feed>
