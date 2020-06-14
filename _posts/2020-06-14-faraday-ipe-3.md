@@ -12,11 +12,11 @@ image: null
 连接数据库
 
 ```
-$sudo -u postgres psql
+$sudo -u postgres psql「登录postgresql」
 psql (12.3 (Debian 12.3-1+b1))
 Type "help" for help.
 
-postgres=# \l
+postgres=# \l「列出所有数据库」
                                    List of databases
    Name    |       Owner        | Encoding | Collate |  Ctype  |   Access privileges   
 -----------+--------------------+----------+---------+---------+-----------------------
@@ -28,9 +28,9 @@ postgres=# \l
            |                    |          |         |         | postgres=CTc/postgres
 (4 rows)
 
-postgres=# \c faraday 
+postgres=# \c faraday 「连接数据库」
 You are now connected to database "faraday" as user "postgres".
-faraday=# \dt
+faraday=# \dt「列出所有表」
 
                                      List of relations
  Schema |                        Name                         | Type  |       Owner        
@@ -40,8 +40,8 @@ faraday=# \dt
  public | agent_execution                                     | table | faraday_postgresql
  public | agent_schedule                                      | table | faraday_postgresql
  public | alembic_version                                     | table | faraday_postgresql
- public | command                                             | table | faraday_postgresql
- public | command_object                                      | table | faraday_postgresql
+ public | command                                             | table | faraday_postgresql「客户端执行的命令，例如nmap，masscan，w3af等」
+ public | command_object                                      | table | faraday_postgresql「客户端执行命令后，返回的对象，例如namp返回主机host信息，返回服务service信息」
  public | comment                                             | table | faraday_postgresql
  public | condition                                           | table | faraday_postgresql
  public | credential                                          | table | faraday_postgresql
@@ -49,10 +49,10 @@ faraday=# \dt
  public | db_metadata                                         | table | faraday_postgresql
  public | executive_report                                    | table | faraday_postgresql
  public | executor                                            | table | faraday_postgresql
- public | faraday_user                                        | table | faraday_postgresql
+ public | faraday_user                                        | table | faraday_postgresql「faraday自身的用户信息」
  public | file                                                | table | faraday_postgresql
- public | host                                                | table | faraday_postgresql
- public | hostname                                            | table | faraday_postgresql
+ public | host                                                | table | faraday_postgresql「扫描后，得到的有效的主机host」
+ public | hostname                                            | table | faraday_postgresql「扫描后，得到的hostname」
  public | knowledge_base                                      | table | faraday_postgresql
  public | license                                             | table | faraday_postgresql
  public | methodology                                         | table | faraday_postgresql
@@ -71,7 +71,7 @@ faraday=# \dt
  public | rule_execution                                      | table | faraday_postgresql
  public | scope                                               | table | faraday_postgresql
  public | search_filter                                       | table | faraday_postgresql
- public | service                                             | table | faraday_postgresql
+ public | service                                             | table | faraday_postgresql「扫描后，得到的有效的服务service信息」
  public | source_code                                         | table | faraday_postgresql
  public | tag                                                 | table | faraday_postgresql
  public | tag_object                                          | table | faraday_postgresql
@@ -81,7 +81,7 @@ faraday=# \dt
  public | user_avatar                                         | table | faraday_postgresql
  public | vulnerability                                       | table | faraday_postgresql
  public | vulnerability_template                              | table | faraday_postgresql
- public | workspace                                           | table | faraday_postgresql
+ public | workspace                                           | table | faraday_postgresql「工作空间」
  public | workspace_permission_association                    | table | faraday_postgresql
 (48 rows)
 
@@ -90,5 +90,6 @@ faraday=# \dt
 
 
 ```
+
 
 
